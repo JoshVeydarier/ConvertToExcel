@@ -1,0 +1,29 @@
+[ {
+    "CodeUE": "HAI502I",
+    "NomUE": "Algo",
+    "CM": 2,
+    "TD": 6876,
+    "TP": 76
+  },
+  {
+    "CodeUE": "HAI508I",
+    "NomUE": "Maths",
+    "CM": 57,
+    "TD": 78687,
+    "TP": 87
+  },
+  {
+    "CodeUE": "HAL301I",
+    "NomUE": "Physique",
+    "CM": 42,
+    "TD": 78,
+    "TP": 789
+  },
+  {
+    "CodeUE": "HLL2G",
+    "NomUE": "Programmation",
+    "CM": 78678,
+    "TD": 57,
+    "TP": 543
+  }
+]

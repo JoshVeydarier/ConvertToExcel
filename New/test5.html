@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<!-- PARTIE 5 - Les resources à associer aux events  -->
+<html lang='en'>
+<head>
+    <meta charset='utf-8' />
+    <link href='lib/main.css' rel='stylesheet' />
+    <script src='lib/main.js'></script>
+    <script src='lib/ferie.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src='jsontodiv.js' ></script>
+    <script src='index2.js'></script>
+
+
+    <script>
+
+        var current_year = (new Date()).getFullYear();
+        var array_ferie = JoursFeries(current_year);
+        var array_ferie_after = JoursFeries(current_year + 1);
+        var array_ferie_before = JoursFeries(current_year - 1);
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+            var a = ferie_gen(array_ferie, 0);
+            var b = ferie_gen(array_ferie, 1);
+            var c = ferie_gen(array_ferie, 2);
+            var d = ferie_gen(array_ferie, 3);
+            var e = ferie_gen(array_ferie, 4);
+            var f = ferie_gen(array_ferie, 5);
+            var g = ferie_gen(array_ferie, 6);
+            var h = ferie_gen(array_ferie, 7);
+            var i = ferie_gen(array_ferie, 8);
+            var j = ferie_gen(array_ferie, 9);
+            var k = ferie_gen(array_ferie, 10);
+            var l = ferie_gen(array_ferie, 11);
+            var m = ferie_gen(array_ferie, 12);
+
+            //Previous Year
+            var a_ = ferie_gen(array_ferie_after, 0);
+            var b_ = ferie_gen(array_ferie_after, 1);
+            var c_ = ferie_gen(array_ferie_after, 2);
+            var d_ = ferie_gen(array_ferie_after, 3);
+            var e_ = ferie_gen(array_ferie_after, 4);
+            var f_ = ferie_gen(array_ferie_after, 5);
+            var g_ = ferie_gen(array_ferie_after, 6);
+            var h_ = ferie_gen(array_ferie_after, 7);
+            var i_ = ferie_gen(array_ferie_after, 8);
+            var j_ = ferie_gen(array_ferie_after, 9);
+            var k_ = ferie_gen(array_ferie_after, 10);
+            var l_ = ferie_gen(array_ferie_after, 11);
+            var m_ = ferie_gen(array_ferie_after, 12);
+
+            //Next Year
+            var a__ = ferie_gen(array_ferie_before, 0);
+            var b__ = ferie_gen(array_ferie_before, 1);
+            var c__ = ferie_gen(array_ferie_before, 2);
+            var d__ = ferie_gen(array_ferie_before, 3);
+            var e__ = ferie_gen(array_ferie_before, 4);
+            var f__ = ferie_gen(array_ferie_before, 5);
+            var g__ = ferie_gen(array_ferie_before, 6);
+            var h__ = ferie_gen(array_ferie_before, 7);
+            var i__ = ferie_gen(array_ferie_before, 8);
+            var j__ = ferie_gen(array_ferie_before, 9);
+            var k__ = ferie_gen(array_ferie_before, 10);
+            var l__ = ferie_gen(array_ferie_before, 11);
+            var m__ = ferie_gen(array_ferie_before, 12);
+
+
+            var checkbox = document.getElementById('drop-remove');
+            var calendarEl = document.getElementById('calendar');
+            var Draggable = FullCalendar.Draggable;
+            var containerEl = document.getElementById('external-events');
+
+            new Draggable(containerEl, {
+                itemSelector: '.fc-event',
+                eventData: function(eventEl) {
+                return {
+                    title: eventEl.innerText
+                };
+                }
+            }); 
+
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'timeGridWeek',
+                views: {
+                    timeGridWeek: {
+                        eventMinHeight: 15,
+                        allDaySlot: false,
+                        slotMinTime: "08:00:00",
+                        slotMaxTime: "20:00:00",
+                        slotDuration: "00:30:00",
+                        expandRows: true
+                    }
+                },
+                weekends: false,
+                initialDate: "2021-09-01",
+                validRange: {
+                    start: "2021-09-01",
+                    end: "2022-06-01"
+                },
+                locale: 'fr',
+                editable: true, 
+                droppable: true, 
+                weekNumbers: true,
+                resources: [
+                    {
+                        id: 'a',
+                        title: 'Room A'
+                    }
+                ],
+                events:
+                    [ 
+                        a,
+                        b,
+                        c,
+                        d,
+                        e,
+                        f,
+                        g,
+                        h,
+                        i,
+                        j,
+                        k,
+                        l,
+                        m,
+                        // --
+                        a_,
+                        b_,
+                        c_,
+                        d_,
+                        e_,
+                        f_,
+                        g_,
+                        h_,
+                        i_,
+                        j_,
+                        k_,
+                        l_,
+                        m_,
+                        // --
+                        a__,
+                        b__,
+                        c__,
+                        d__,
+                        e__,
+                        f__,
+                        g__,
+                        h__,
+                        i__,
+                        j__,
+                        k__,
+                        l__,
+                        m__,
+                        { 
+                            start: '2021-09-10', 
+                            end: '2021-09-10', 
+                            display: 'background',
+                            overlap: false
+                            
+
+                        },
+
+
+
+                        { 
+                            id: 'yo', // ajout d'un ID 
+                            title: 'UE1',
+                            start: '2021-09-09T15:30:00', 
+                            end: '2021-09-09T16:30:00',
+                            resourceId: 'a'
+
+                        },
+
+
+                    ],
+                    drop: function(info) {
+                        /*
+                            Chaque event est caractérisé par son identifiant qui correspond à son code UE
+                            On le récupérer simplement comme ci-dessous
+                        */
+                        uecheck = LiUE[info.draggedEl.id];
+
+                        /*
+                            J'appelle la fonction course(...) dans test.js
+                            Je récupérer le string qui correspond au texte du fils du fils de l'élément
+                            qu'on drag (tu peux le voir quand tu inspect).
+                        */
+                        wichCourse = course(info.draggedEl.childNodes[0].childNodes[0].innerText);
+
+                        // Ici un switch pour appeler la bonne fonction selon le cours
+                        switch(wichCourse)
+                        {
+                            case 'CM':
+                                dropCM(uecheck, info);
+                                break;
+
+                            case 'TD':
+                                dropTD(uecheck, info);
+                                break;
+
+                            case 'TP': 
+                                dropTP(uecheck, info);
+                                break;
+
+                            default:
+                                alert("Erreur!");
+                                break;
+                        }
+
+                    }
+
+            });
+
+            calendar.render();
+            
+
+        });
+
+    </script>
+
+    <style>
+
+        body {
+            margin-top: 40px;
+            font-size: 14px;
+            font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+        }
+
+        #external-events {
+            position: fixed;
+            left: 20px;
+            top: 10%;
+            width: 150px;
+            padding: 0 10px;
+            border: 1px solid #ccc;
+            background: #eee;
+            text-align: left;
+            z-index: 100;
+        }
+
+            #external-events h4 {
+                font-size: 16px;
+                margin-top: 0;
+                padding-top: 1em;
+            }
+
+            #external-events .fc-event {
+                margin: 3px 0;
+                cursor: move;
+            }
+
+            #external-events p {
+                margin: 1.5em 0;
+                font-size: 11px;
+                color: #666;
+            }
+
+                #external-events p input {
+                    margin: 0;
+                    vertical-align: middle;
+                }
+
+        #calendar-wrap {
+            margin-left: 200px;
+        }
+
+        #calendar {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .expandable {
+            overflow: hidden;
+            color: antiquewhite;   
+            line-height: 30px;
+            transition: all .5s ease-in-out;
+            height: 0;
+            }
+
+        .expandable:target {
+            height: 30px;
+        }
+    </style>
+
+</head>
+<body id="body">
+   
+    <div id='external-events'></div>
+    
+    <div id="calendar-container">
+        <div id='calendar'></div>
+    </div>
+    
+</body>
+
+<script src='test.js'></script>
+
+</html>
